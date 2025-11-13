@@ -1,0 +1,48 @@
+<nav class="bg-gray-900 shadow-lg">
+  <div class="max-w-7xl mx-auto px-6 sm:px-8 py-4 flex items-center justify-between">
+    <!-- Logo / Brand -->
+    <a href="/" class="text-2xl font-bold text-pink-600 tracking-wide hover:text-pink-500 transition-colors duration-300">
+      UrbanTrends
+    </a>
+
+    <!-- Navigation Links -->
+    <ul class="hidden md:flex space-x-8">
+      <li>
+        <a href="/" class="text-gray-300 hover:text-white font-medium transition-colors duration-200">Home</a>
+      </li>
+      <li>
+        <a href="/about/" class="text-gray-300 hover:text-white font-medium transition-colors duration-200">About</a>
+      </li>
+      <li>
+        <a href="/blogs/" class="text-gray-300 hover:text-white font-medium transition-colors duration-200">Blogs</a>
+      </li>
+    </ul>
+
+    <!-- Mobile Menu Button -->
+    <button id="menu-btn" class="md:hidden text-gray-300 hover:text-white focus:outline-none focus:ring-2 focus:ring-pink-600">
+      <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2"
+           viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path stroke-linecap="round" stroke-linejoin="round"
+              d="M4 6h16M4 12h16M4 18h16"></path>
+      </svg>
+    </button>
+  </div>
+
+  <!-- Mobile Menu -->
+  <div id="mobile-menu" class="md:hidden hidden px-6 pb-4">
+    <ul class="space-y-3">
+      <li><a href="/" class="block text-gray-300 hover:text-white font-medium">Home</a></li>
+      <li><a href="/about/" class="block text-gray-300 hover:text-white font-medium">About</a></li>
+      <li><a href="/blogs/" class="block text-gray-300 hover:text-white font-medium">Blogs</a></li>
+    </ul>
+  </div>
+</nav>
+
+<script>
+  // Simple mobile menu toggle
+  const menuBtn = document.getElementById('menu-btn');
+  const mobileMenu = document.getElementById('mobile-menu');
+  menuBtn.addEventListener('click', () => {
+    mobileMenu.classList.toggle('hidden');
+  });
+</script>
