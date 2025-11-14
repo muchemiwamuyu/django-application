@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+  <h1 class="text-3xl font-bold text-pink-600 mb-6">Edit Blog</h1>
+
+  <form method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+
+    <label class="block mb-4">
+      <span class="text-gray-700 font-medium">Title</span>
+      <input
+        type="text"
+        name="title"
+        class="mt-1 block w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-pink-500 focus:border-pink-500"
+        value="{{ blog.title }}"
+      >
+    </label>
+
+    <label class="block mb-4">
+      <span class="text-gray-700 font-medium">Content</span>
+      <textarea
+        name="content"
+        rows="10"
+        class="mt-1 block w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-pink-500 focus:border-pink-500"
+      >{{ blog.content }}</textarea>
+    </label>
+
+    <!-- Published checkbox -->
+    <label class="flex items-center gap-2 mb-6 cursor-pointer">
+      <input
+        type="checkbox"
+        name="published"
+        class="h-5 w-5 text-pink-600 focus:ring-pink-500 rounded"
+        {% if blog.published %}checked{% endif %}
+      >
+      <span class="text-gray-700 font-medium">Published</span>
+    </label>
+
+    <!-- Current image preview -->
+    {% if blog.image %}
+    <div class="mb-4">
+      <span class="text-gray-700 font-medium">Current Image</span>
+      <img src="{{ blog.image.url }}" alt="" class="w-48 rounded-lg mt-2 shadow">
+    </div>
+    {% endif %}
+
+    <!-- Replace Image -->
+    <label class="block mb-6">
+      <span class="text-gray-700 font-medium">Replace Image</span>
+      <input
+        type="file"
+        name="image"
+        class="mt-2 block w-full text-gray-700"
+      >
+    </label>
+
+    <button
+      type="submit"
+      class="bg-pink-600 text-white px-6 py-3 rounded-lg hover:bg-pink-700 transition"
+    >
+      Update Blog
+    </button>
+  </form>
+</div>
+{% endblock %}

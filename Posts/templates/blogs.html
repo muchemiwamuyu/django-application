@@ -6,34 +6,53 @@
   </h1>
 
   {% for blog in blogs %}
-  <article class="bg-white shadow-lg rounded-2xl p-6 mb-8 hover:shadow-pink-200 transition-shadow duration-300">
-    <h2 class="text-2xl font-semibold text-pink-600 hover:text-pink-700 mb-2">
-      {{ blog.title }}
-    </h2>
+  <article class="bg-white shadow-lg rounded-2xl overflow-hidden mb-8 hover:shadow-pink-200 transition-shadow duration-300">
+    
+    <!-- Blog Image -->
+    {% if blog.image %}
+      <img src="{{ blog.image.url }}" alt="{{ blog.title }}" class="w-full h-64 object-cover">
+    {% endif %}
 
-    <p class="text-gray-700 leading-relaxed mb-4">
-      {{ blog.content|truncatewords:50 }}
-    </p>
+    <div class="p-6">
+      <h2 class="text-2xl font-semibold text-pink-600 hover:text-pink-700 mb-2">
+        {{ blog.title }}
+      </h2>
 
-    <div class="flex flex-wrap items-center justify-between text-sm text-gray-500 border-t border-gray-100 pt-4">
-      <p>
-        <span class="font-medium text-gray-700">By:</span> {{ blog.author }}
+      <p class="text-gray-700 leading-relaxed mb-4">
+        {{ blog.content|truncatewords:50 }}
       </p>
-      <p>
-        <span class="font-medium text-gray-700">Published:</span>
-        {% if blog.published %}
-          <span class="text-green-600 font-semibold">Yes</span>
-        {% else %}
-          <span class="text-red-500 font-semibold">No</span>
-        {% endif %}
-      </p>
-      <p>
-        <span class="font-medium text-gray-700">Created:</span> {{ blog.created_at|date:"M d, Y" }}
-      </p>
-      <p>
-        <span class="font-medium text-gray-700">Updated:</span> {{ blog.updated_at|date:"M d, Y" }}
-      </p>
+
+      <div class="flex flex-wrap items-center justify-between text-sm text-gray-500 border-t border-gray-100 pt-4">
+        <p>
+          <span class="font-medium text-gray-700">By:</span> {{ blog.author }}
+        </p>
+        <p>
+          <span class="font-medium text-gray-700">Published:</span>
+          {% if blog.published %}
+            <span class="text-green-600 font-semibold">Yes</span>
+          {% else %}
+            <span class="text-red-500 font-semibold">No</span>
+          {% endif %}
+        </p>
+        <p>
+          <span class="font-medium text-gray-700">Created:</span> {{ blog.created_at|date:"M d, Y" }}
+        </p>
+        <p>
+          <span class="font-medium text-gray-700">Updated:</span> {{ blog.updated_at|date:"M d, Y" }}
+        </p>
+      </div>
+
+      <!-- EDIT BUTTON -->
+      <div class="mt-6 text-right">
+        <a 
+          href="{% url 'edit_blog' blog.id %}" 
+          class="inline-block bg-pink-600 text-white font-semibold px-4 py-2 rounded-lg shadow hover:bg-pink-700 transition-all"
+        >
+          Edit Blog
+        </a>
+      </div>
     </div>
+
   </article>
   {% empty %}
   <div class="text-center py-20">
