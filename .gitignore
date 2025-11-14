@@ -20,6 +20,17 @@ db.sqlite3
 media/
 *.mo
 
+# Django
+*.log
+staticfiles/
+media/
+
+# Docker
+*.pyc
+docker-compose.override.yml
+*.env
+
+
 # IDEs / Editors
 .vscode/
 .idea/
